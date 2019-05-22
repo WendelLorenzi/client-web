@@ -6,7 +6,8 @@ import {
   GraphQLProvider,
   NotificationProvider,
   ApolloProvider,
-  RollbarProvider
+  RollbarProvider,
+  CartProvider
 } from './provider'
 import { MainNavigation, Notification } from './components'
 import GAListener from './GAListener'
@@ -24,11 +25,13 @@ const App = props => (
             <AuthProvider>
               <ApolloProvider>
                 <GraphQLProvider>
-                  <MainNavigation />
-                  <Container>
-                    <Routes />
-                  </Container>
-                  <Notification />
+                  <CartProvider>
+                    <MainNavigation />
+                    <Container>
+                      <Routes />
+                    </Container>
+                    <Notification />
+                  </CartProvider>
                 </GraphQLProvider>
               </ApolloProvider>
             </AuthProvider>

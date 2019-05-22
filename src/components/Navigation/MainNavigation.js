@@ -1,11 +1,12 @@
 import React, { useContext } from 'react'
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { AuthContext } from '../../context'
+import { AuthContext, CartContext } from '../../context'
 
 const mainNavigation = props => {
   const { t, i18n } = useTranslation()
   const { token, logout } = useContext(AuthContext)
+  const { quantity, total } = useContext(CartContext)
 
   const LanguageButton = ({ language, children }) =>
     i18n.language !== language && (
@@ -21,11 +22,15 @@ const mainNavigation = props => {
       <Navbar.Collapse>
         <Nav className='mr-auto' />
         <Nav>
-          <Nav.Link href='#events'>{t('navigation:Events')}</Nav.Link>
+          {/* <Nav.Link href='#events'>{t('navigation:Events')}</Nav.Link> */}
           {token && (
             <React.Fragment>
-              <Nav.Link href='#bookings'>{t('navigation:Bookings')}</Nav.Link>
-              <Nav.Link href='#bat'>Bat</Nav.Link>
+              {/* <Nav.Link href='#bookings'>{t('navigation:Bookings')}</Nav.Link>
+              <Nav.Link href='#bat'>Bat</Nav.Link> */}
+              <Nav.Link href='#pedido'>Shop</Nav.Link>
+              <Nav.Link href='#cart'>
+                ({quantity()})Cart R${total().toFixed(2)}
+              </Nav.Link>
               <div id='logout'>
                 <Nav.Link id='logout' onClick={logout}>
                   {t('navigation:Logout')}
